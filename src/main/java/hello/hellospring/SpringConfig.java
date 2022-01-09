@@ -22,10 +22,10 @@ public class SpringConfig {
         return new MemberService(memberRepository);
     }
 
-    @Bean
+   /* @Bean
     public TimeTraceAop TimeTraceAop() {
         return new TimeTraceAop();
-    }
+    }*/
    // @Bean
    // public MemberRepository memberRepository() {
 // return new MemoryMemberRepository();

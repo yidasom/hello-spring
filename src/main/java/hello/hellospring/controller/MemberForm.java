@@ -1,5 +1,12 @@
 package hello.hellospring.controller;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 public class MemberForm {
     /** 이메일 */
     private String email;
@@ -8,27 +15,4 @@ public class MemberForm {
     /** 비밀번호 */
     private String passwrd;
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPasswrd() {
-        return passwrd;
-    }
-
-    public void setPasswrd(String passwrd) {
-        this.passwrd = passwrd;
-    }
 }

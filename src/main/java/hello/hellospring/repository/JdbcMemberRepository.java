@@ -1,3 +1,4 @@
+/*
 package hello.hellospring.repository;
 import hello.hellospring.domain.Member;
 import org.springframework.jdbc.datasource.DataSourceUtils;
@@ -139,4 +140,4 @@ public class JdbcMemberRepository implements MemberRepository {
     private void close(Connection conn) throws SQLException {
         DataSourceUtils.releaseConnection(conn, dataSource);
     }
-}
+}*/

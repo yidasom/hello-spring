@@ -45,12 +45,9 @@ public class LoginController {
     /** 회원가입 등록 */
     @PostMapping("/login/join")
     @ResponseBody
-    public Map<String, Object> join(Member member) {
-        Map<String, Object> result = new HashMap<>();
-        //memberService.join(member);
-        // return "redirect:/login/login";
-        System.out.println(member);
-        return result;
+    public Boolean join(Member member) {
+        memberService.join(member);
+        return true;
     }
 
     /** 비밀번호 찾기 화면 */

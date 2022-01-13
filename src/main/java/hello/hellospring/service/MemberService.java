@@ -1,10 +1,10 @@
 package hello.hellospring.service;
 
-import hello.hellospring.controller.MemberForm;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,11 +19,11 @@ public class MemberService {
     /**
      * 회원가입
      */
-    public Long join(Member member) {
+    public void join(Member member) {
         // 같은 이메일, 이름의 중복 회원은 안된다.
         validateDuplicatateMember(member);
+        member.setRegdt(LocalDateTime.now());
         memberRepository.save(member);
-        return member.getId();
     }
 
     private void validateDuplicatateMember(Member member) {

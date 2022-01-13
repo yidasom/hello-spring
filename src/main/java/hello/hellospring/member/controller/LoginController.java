@@ -29,7 +29,6 @@ public class LoginController {
         this.memberService = memberService;
     }
 
-
     /** 로그인 화면 */
     @GetMapping("/login/login")
     public String loginForm() {
@@ -43,11 +42,16 @@ public class LoginController {
     }
 
     /** 회원가입 등록 */
-    @PostMapping("/login/join")
+    /*@PostMapping("/login/join")
     @ResponseBody
     public Boolean join(Member member) {
         memberService.join(member);
         return true;
+    }*/
+    @PostMapping("/login/join")
+    public String join(Member member) {
+        memberService.join(member);
+        return "redirect:/";
     }
 
     /** 비밀번호 찾기 화면 */

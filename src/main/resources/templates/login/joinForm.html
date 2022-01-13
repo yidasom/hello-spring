@@ -38,7 +38,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">회원가입</h1>
                             </div>
-                            <form class="user" id="joinForm">
+                            <form action="/login/join" class="user" name="joinForm" method="post">
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user" id="email" name="email"
                                         placeholder="이메일을 입력해주세요.">
@@ -61,7 +61,7 @@
                                             id="cnfrmPasswrd" name="passwrd" placeholder="비밀번호를 다시 입력해주세요">
                                     </div>
                                 </div>-->
-                                <a href="#!" class="btn btn-primary btn-user btn-block" id="join">
+                                <a href="javascript:joinForm.submit();" class="btn btn-primary btn-user btn-block" id="join">
                                     Register Account
                                 </a>
                                 <hr>
@@ -98,13 +98,14 @@
     <script src="/bootstrap/js/sb-admin-2.min.js"></script>
 
     <script>
-        $( document ).ready(function() {
-            $('#join').on('click', function() {
-                let header = $("meta[name='_csrf_header']").attr('content');
+        // $( document ).ready(function() {
+           /* $('#join').on('click', function() {
+                $('#joinForm').attr('action', '/login/join');
+                $('#joinForm').submit();*/
+               /* let header = $("meta[name='_csrf_header']").attr('content');
                 let token = $("meta[name='_csrf']").attr('content');
 
                 let param = $('#joinForm').serialize();
-                console.log(param);
                 $.ajax({
                     type: 'post',
                     url: '/login/join',
@@ -112,13 +113,18 @@
                         xhr.setRequestHeader(header, token);
                     },
                     data: param,
-                    success: function() {
-                        alert('회원가입에 성공하였습니다. \n로그인 페이지로 이동하겠습니다.');
-                        location.href = "/login/login";
+                    success: function(val) {
+                        console.log(val);
+                        if (val == "true") {
+                            alert('회원가입에 성공하였습니다. \n로그인 페이지로 이동하겠습니다.');
+                            location.href = "/login/login";
+                        } else {
+                            alert('이미 존재하는 계정입니다. \n확인 후 다시 등록해주세요.');
+                        }
                     }
-                })
-            });
-        });
+                })*/
+           /* });
+        });*/
     </script>
 </body>
 

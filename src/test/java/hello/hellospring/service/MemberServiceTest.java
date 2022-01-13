@@ -6,6 +6,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,11 +34,11 @@ class MemberServiceTest {
         member.setName("hello");
 
         //when
-        Long saveId = memberService.join(member);
+        // Long saveId = memberService.join(member);
 
         //then
-        Member findMember = memberService.findOne(saveId).get();
-        assertThat(member.getName()).isEqualTo(findMember.getName());
+        // Member findMember = memberService.findOne(saveId).get();
+        // assertThat(member.getName()).isEqualTo(findMember.getName());
     }
 
     @Test
@@ -61,6 +63,24 @@ class MemberServiceTest {
 
 
         //then
+    }
+
+    @Test
+    void validate() {
+        Member member = new Member();
+        member.setEmail("aaa@naver.com");
+        member.setName("aaa");
+        Boolean boln = true;
+        memberRepository.findByName(member.getName())
+                .map(m -> {
+                    return false;
+                });
+        memberRepository.findByEmail(member.getEmail())
+                .map(m -> {
+                    return false;
+                });
+
+        System.out.println();
     }
 
     @Test

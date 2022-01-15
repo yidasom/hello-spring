@@ -1,18 +1,11 @@
 package hello.hellospring.member.controller;
 
-import hello.hellospring.domain.Member;
-import hello.hellospring.service.MemberService;
+import hello.hellospring.member.domain.Member;
+import hello.hellospring.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.swing.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * LoginController
@@ -20,7 +13,7 @@ import java.util.logging.Logger;
  * @author miz-yi
  */
 @Controller
-public class LoginController {
+public class LoginController<puclic> {
 
     private final MemberService memberService;
 
@@ -35,6 +28,13 @@ public class LoginController {
         return "login/loginForm";
     }
 
+    /** 로그인 */
+    @PostMapping("/login/login")
+    public String login(Member member) {
+        memberService.login(member);
+        return null;
+    }
+
     /** 회원가입 화면 */
     @GetMapping("/login/join")
     public String joinForm() {
@@ -42,16 +42,11 @@ public class LoginController {
     }
 
     /** 회원가입 등록 */
-    /*@PostMapping("/login/join")
-    @ResponseBody
-    public Boolean join(Member member) {
-        memberService.join(member);
-        return true;
-    }*/
     @PostMapping("/login/join")
+//    @ResponseBody
     public String join(Member member) {
         memberService.join(member);
-        return "redirect:/";
+        return "redirect:/login/login";
     }
 
     /** 비밀번호 찾기 화면 */

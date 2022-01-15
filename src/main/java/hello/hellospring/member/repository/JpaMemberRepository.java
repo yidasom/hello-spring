@@ -1,5 +1,4 @@
-/*
-package hello.hellospring.repository;
+package hello.hellospring.member.repository;
 
 import hello.hellospring.member.domain.Member;
 
@@ -48,5 +47,11 @@ public class JpaMemberRepository implements MemberRepository {
     public List<Member> findAll() {
         return em.createQuery("select m from y_member m", Member.class).getResultList();
     }
+
+    /** 로그인 */
+    @Override
+    public Optional<Member> login(Member member) {
+        member = em.find(Member.class, member);
+        return Optional.ofNullable(member);
+    }
 }
-*/

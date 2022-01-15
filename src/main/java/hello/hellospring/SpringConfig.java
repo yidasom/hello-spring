@@ -1,8 +1,7 @@
 package hello.hellospring;
 
-import hello.hellospring.aop.TimeTraceAop;
-import hello.hellospring.repository.*;
-import hello.hellospring.service.MemberService;
+import hello.hellospring.member.repository.*;
+import hello.hellospring.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

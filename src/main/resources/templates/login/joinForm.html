@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta name="_csrf_header" th:content="${_csrf.headerName}">
-    <meta name="_csrf" th:content="${_csrf.token}">
+    <!--<meta name="_csrf_header" th:content="${_csrf.headerName}">
+    <meta name="_csrf" th:content="${_csrf.token}">-->
 
     <title>회원가입</title>
 
@@ -38,7 +38,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">회원가입</h1>
                             </div>
-                            <form action="/login/join" class="user" name="joinForm" method="post">
+                            <form action="/login/join" class="user" id="joinForm" name="joinForm" method="post">
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user" id="email" name="email"
                                         placeholder="이메일을 입력해주세요.">
@@ -61,7 +61,7 @@
                                             id="cnfrmPasswrd" name="passwrd" placeholder="비밀번호를 다시 입력해주세요">
                                     </div>
                                 </div>-->
-                                <a href="javascript:joinForm.submit();" class="btn btn-primary btn-user btn-block" id="join">
+                                <a href="javascript:void(0);" class="btn btn-primary btn-user btn-block" id="join">
                                     Register Account
                                 </a>
                                 <hr>
@@ -98,11 +98,11 @@
     <script src="/bootstrap/js/sb-admin-2.min.js"></script>
 
     <script>
-        // $( document ).ready(function() {
-           /* $('#join').on('click', function() {
+         $( document ).ready(function() {
+            $('#join').on('click', function() {
                 $('#joinForm').attr('action', '/login/join');
-                $('#joinForm').submit();*/
-               /* let header = $("meta[name='_csrf_header']").attr('content');
+                $('#joinForm').submit();
+                /*let header = $("meta[name='_csrf_header']").attr('content');
                 let token = $("meta[name='_csrf']").attr('content');
 
                 let param = $('#joinForm').serialize();
@@ -123,8 +123,8 @@
                         }
                     }
                 })*/
-           /* });
-        });*/
+            });
+        });
     </script>
 </body>
 

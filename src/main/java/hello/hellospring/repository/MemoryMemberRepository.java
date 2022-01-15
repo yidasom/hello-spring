@@ -1,6 +1,7 @@
+/*
 package hello.hellospring.repository;
 
-import hello.hellospring.domain.Member;
+import hello.hellospring.member.domain.Member;
 
 import java.util.*;
 
@@ -40,3 +41,4 @@ public class MemoryMemberRepository implements MemberRepository {
         store.clear();
     }
 }
+*/

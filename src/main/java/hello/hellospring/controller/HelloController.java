@@ -1,3 +1,4 @@
+/*
 package hello.hellospring.controller;
 
 import org.springframework.stereotype.Controller;
@@ -46,3 +47,4 @@ public class HelloController {
         }
     }
 }
+*/

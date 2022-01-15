@@ -1,8 +1,7 @@
-/*
-package hello.hellospring.service;
+package hello.hellospring.member.service;
 
 import hello.hellospring.member.domain.Member;
-import hello.hellospring.repository.MemberRepository;
+import hello.hellospring.member.repository.MemberRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
@@ -11,17 +10,15 @@ import java.util.Optional;
 
 @Transactional
 public class MemberService {
-    private  final MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
-    */
-/**
+    /**
      * 회원가입
-     *//*
-
+     */
     public void join(Member member) {
         // 같은 이메일, 이름의 중복 회원은 안된다.
         validateDuplicatateMember(member);
@@ -40,11 +37,9 @@ public class MemberService {
                 });
     }
 
-    */
-/**
+    /**
      * 전체 회원 조회
-     *//*
-
+     */
     public List<Member> findMembers() {
         return memberRepository.findAll();
     }
@@ -53,5 +48,8 @@ public class MemberService {
         return memberRepository.findById(memberId);
     }
 
+    /** 로그인 */
+    public Optional<Member> login(Member member) {
+        return memberRepository.login(member);
+    }
 }
-*/

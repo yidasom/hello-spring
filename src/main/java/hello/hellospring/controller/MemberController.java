@@ -1,7 +1,8 @@
+/*
 package hello.hellospring.controller;
 
-import hello.hellospring.domain.Member;
-import hello.hellospring.service.MemberService;
+import hello.hellospring.member.domain.Member;
+import hello.hellospring.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,9 +28,11 @@ public class MemberController {
 
     @PostMapping("/members/new")
     public String create(Member member) {
-        /*Member member = new Member();
+        */
+/*Member member = new Member();
         member.setName(form.getName());
-        member.setEmail(form.getEmail());*/
+        member.setEmail(form.getEmail());*//*
+
 
         memberService.join(member);
 
@@ -43,3 +46,4 @@ public class MemberController {
         return "members/memberList";
     }
 }
+*/

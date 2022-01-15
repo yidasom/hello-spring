@@ -1,5 +1,4 @@
-/*
-package hello.hellospring.repository;
+package hello.hellospring.member.repository;
 
 import hello.hellospring.member.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,5 +10,7 @@ public interface SpringDataJpaMemberRepository extends JpaRepository<Member, Lon
     // JPA select m from Member m where m.name = ?
     @Override
     Optional<Member> findByName(String name);
+
+    @Override
+    Optional<Member> login(Member member);
 }
-*/

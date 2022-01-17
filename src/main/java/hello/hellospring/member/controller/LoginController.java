@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @author miz-yi
  */
 @Controller
-public class LoginController<puclic> {
+public class LoginController {
 
     private final MemberService memberService;
 
@@ -31,7 +31,7 @@ public class LoginController<puclic> {
     /** 로그인 */
     @PostMapping("/login/login")
     public String login(Member member) {
-        memberService.login(member);
+        memberService.login(member.getEmail(), member.getName());
         return null;
     }
 

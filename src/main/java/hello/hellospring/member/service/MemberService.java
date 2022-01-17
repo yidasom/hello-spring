@@ -49,7 +49,7 @@ public class MemberService {
     }
 
     /** 로그인 */
-    public Optional<Member> login(Member member) {
-        return memberRepository.login(member);
+    public Optional<Member> login(String email, String passwrd) {
+        return memberRepository.login(email, passwrd);
     }
 }

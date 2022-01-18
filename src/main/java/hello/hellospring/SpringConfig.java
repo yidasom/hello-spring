@@ -1,3 +1,4 @@
+/*
 package hello.hellospring;
 
 import hello.hellospring.member.repository.*;
@@ -18,4 +19,4 @@ public class SpringConfig {
         return new MemberService(memberRepository);
     }
 
-}
+}*/

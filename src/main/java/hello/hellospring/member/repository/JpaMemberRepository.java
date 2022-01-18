@@ -1,3 +1,4 @@
+/*
 package hello.hellospring.member.repository;
 
 import hello.hellospring.member.domain.Member;
@@ -48,7 +49,9 @@ public class JpaMemberRepository implements MemberRepository {
         return em.createQuery("select m from y_member m", Member.class).getResultList();
     }
 
-    /** 로그인 */
+    */
+/** 로그인 *//*
+
     @Override
     public Optional<Member> login(String email, String passwrd) {
         Member result = em.createQuery("select m from y_member m where m.email = :email and m.passwrd = :passwrd", Member.class)
@@ -58,3 +61,4 @@ public class JpaMemberRepository implements MemberRepository {
          return Optional.ofNullable(result);
     }
 }
+*/

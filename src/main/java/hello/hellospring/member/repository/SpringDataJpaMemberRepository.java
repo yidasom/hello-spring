@@ -1,3 +1,4 @@
+/*
 package hello.hellospring.member.repository;
 
 import hello.hellospring.member.domain.Member;
@@ -14,3 +15,4 @@ public interface SpringDataJpaMemberRepository extends JpaRepository<Member, Lon
     @Override
     Optional<Member> login(String email, String passwrd);
 }
+*/

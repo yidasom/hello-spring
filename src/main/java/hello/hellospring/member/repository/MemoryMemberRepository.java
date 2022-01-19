@@ -32,7 +32,7 @@ public class MemoryMemberRepository implements MemberRepository {
     @Override
     public Optional<Member> findByEmail(String email) {
         return store.values().stream()
-                .filter(member -> member.getName().equals(email))
+                .filter(member -> member.getEmail().equals(email))
                 .findAny();
     }
 

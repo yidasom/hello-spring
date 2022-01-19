@@ -42,11 +42,11 @@ public class LoginController {
     }
 
     /** 회원가입 등록 */
-    @PostMapping("/login/join")
+    @PostMapping("/login/join2")
 //    @ResponseBody
     public String join(Member member) {
         memberService.join(member);
-        return "redirect:/login/login";
+        return "redirect:/";
     }
 
     /** 비밀번호 찾기 화면 */

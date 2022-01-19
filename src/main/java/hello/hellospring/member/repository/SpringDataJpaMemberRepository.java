@@ -14,5 +14,4 @@ public interface SpringDataJpaMemberRepository extends JpaRepository<Member, Lon
 
     @Override
     Optional<Member> login(String email, String passwrd);
-}
-*/
+}*/

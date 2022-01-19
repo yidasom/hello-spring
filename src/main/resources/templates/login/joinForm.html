@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!--<meta name="_csrf_header" th:content="${_csrf.headerName}">
-    <meta name="_csrf" th:content="${_csrf.token}">-->
+<!--    <meta name="_csrf_header" th:content="${_csrf.headerName}">-->
+<!--    <meta name="_csrf" th:content="${_csrf.token}">-->
 
     <title>회원가입</title>
 
@@ -38,7 +38,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">회원가입</h1>
                             </div>
-                            <form action="/login/join" class="user" id="joinForm" name="joinForm" method="post">
+                            <form action="/login/join2" class="user" id="joinForm" name="joinForm" method="post">
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user" id="email" name="email"
                                         placeholder="이메일을 입력해주세요.">
@@ -100,7 +100,7 @@
     <script>
          $( document ).ready(function() {
             $('#join').on('click', function() {
-                $('#joinForm').attr('action', '/login/join');
+                $('#joinForm').attr({action : '/login/join2', method: 'post'});
                 $('#joinForm').submit();
                 /*let header = $("meta[name='_csrf_header']").attr('content');
                 let token = $("meta[name='_csrf']").attr('content');
@@ -123,7 +123,7 @@
                         }
                     }
                 })*/
-            });
+             });
         });
     </script>
 </body>

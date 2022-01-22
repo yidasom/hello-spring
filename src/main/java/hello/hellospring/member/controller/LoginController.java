@@ -1,11 +1,15 @@
 package hello.hellospring.member.controller;
 
 import hello.hellospring.member.domain.Member;
+import hello.hellospring.member.domain.Sesson;
 import hello.hellospring.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import javax.annotation.Resource;
 
 /**
  * LoginController
@@ -16,6 +20,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class LoginController {
 
     private final MemberService memberService;
+
+    @Resource
+    private Sesson sesson;
 
     @Autowired
     public LoginController(MemberService memberService) {
@@ -32,7 +39,8 @@ public class LoginController {
     @PostMapping("/login/login")
     public String login(Member member) {
         memberService.login(member.getEmail(), member.getName());
-        System.out.println("12312312331231231231323312312312");
+        sesson.setEmail(member.getEmail());
+        sesson.setName(member.getName());
         return "redirect:/";
     }
 

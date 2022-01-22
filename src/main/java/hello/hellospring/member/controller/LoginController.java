@@ -32,7 +32,8 @@ public class LoginController {
     @PostMapping("/login/login")
     public String login(Member member) {
         memberService.login(member.getEmail(), member.getName());
-        return null;
+        System.out.println("12312312331231231231323312312312");
+        return "redirect:/";
     }
 
     /** 회원가입 화면 */

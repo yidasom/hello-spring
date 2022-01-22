@@ -53,10 +53,10 @@ public class JpaMemberRepository implements MemberRepository {
     /** 로그인 */
     @Override
     public Optional<Member> login(String email, String passwrd) {
-        Member result = em.createQuery("select m from y_member m where m.email = :email and m.passwrd = :passwrd", Member.class)
+        Optional<Member> result = em.createQuery("select m from y_member m where m.email = :email and m.passwrd = :passwrd", Member.class)
                 .setParameter("email", email)
                 .setParameter("passwrd", passwrd)
-                .getSingleResult();
-         return Optional.ofNullable(result);
+                .getResultList().stream().findFirst();
+         return result;
     }
 }

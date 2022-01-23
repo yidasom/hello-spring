@@ -1,15 +1,22 @@
 package hello.hellospring.member.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import hello.hellospring.member.domain.Member;
-import hello.hellospring.member.domain.Sesson;
+import hello.hellospring.member.domain.MemberInfo;
 import hello.hellospring.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * LoginController
@@ -22,7 +29,7 @@ public class LoginController {
     private final MemberService memberService;
 
     @Resource
-    private Sesson sesson;
+    private MemberInfo info;
 
     @Autowired
     public LoginController(MemberService memberService) {
@@ -37,11 +44,23 @@ public class LoginController {
 
     /** 로그인 */
     @PostMapping("/login/login")
-    public String login(Member member) {
-        memberService.login(member.getEmail(), member.getName());
-        sesson.setEmail(member.getEmail());
-        sesson.setName(member.getName());
-        return "redirect:/";
+    @ResponseBody
+    public String login(@RequestBody String info) {
+        String json = null;
+        try {
+            Gson gson = new Gson();
+            Member member = new Member();
+            member = gson.fromJson(info, member.getClass());
+
+            System.out.println("info : " + gson.toJson(member));
+            memberService.login(member.getEmail(), member.getPasswrd());
+
+            json = gson.toJson(member);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return json;
+
     }
 
     /** 회원가입 화면 */
@@ -52,7 +71,6 @@ public class LoginController {
 
     /** 회원가입 등록 */
     @PostMapping("/login/join2")
-//    @ResponseBody
     public String join(Member member) {
         memberService.join(member);
         return "redirect:/";

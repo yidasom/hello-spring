@@ -102,27 +102,6 @@
             $('#join').on('click', function() {
                 $('#joinForm').attr({action : '/login/join2', method: 'post'});
                 $('#joinForm').submit();
-                /*let header = $("meta[name='_csrf_header']").attr('content');
-                let token = $("meta[name='_csrf']").attr('content');
-
-                let param = $('#joinForm').serialize();
-                $.ajax({
-                    type: 'post',
-                    url: '/login/join',
-                    beforeSend: function(xhr){
-                        xhr.setRequestHeader(header, token);
-                    },
-                    data: param,
-                    success: function(val) {
-                        console.log(val);
-                        if (val == "true") {
-                            alert('회원가입에 성공하였습니다. \n로그인 페이지로 이동하겠습니다.');
-                            location.href = "/login/login";
-                        } else {
-                            alert('이미 존재하는 계정입니다. \n확인 후 다시 등록해주세요.');
-                        }
-                    }
-                })*/
              });
         });
     </script>

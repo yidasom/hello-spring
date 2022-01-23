@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <!--<meta name="_csrf_header" th:content="${_csrf.headerName}">
+    <meta name="_csrf" th:content="${_csrf.token}"> 스프링 시큐리티 시 진행-->
     <title>Login</title>
 
     <!-- Custom fonts for this template-->
@@ -94,10 +96,36 @@
     <script>
         $(document).ready(function () {
             $('#login').on('click', function () {
-                $('#loginForm').attr({action: '/login/login', method: 'post'});
-                $('#loginForm').submit();
-            })
+                // let header = $("meta[name='_csrf_header']").attr('content');
+                // let token = $("meta[name='_csrf']").attr('content');
 
+                let params = {
+                    email: $('#email').val(),
+                    passwrd: $('#passwrd').val()
+                }
+                $.ajax({
+                    type: 'post',
+                    url: '/login/login',
+                    // beforeSend: function (xhr) {
+                    //     xhr.setRequestHeader(header, token);
+                    // },
+                    data: params,
+                    dataType: 'json',
+                    contentType: 'application/json;charset=UTF-8',
+                    success: function (val) {
+                        console.log(val);
+                        if (val) {
+                            if ($('#customCheck').is(':checked')) {
+                                // setCookie("email", id, 7);
+                            }
+                            alert('로그인에 성공하였습니다.');
+                            location.href = '/login/login';
+                        } else {
+                            alert('다시 로그인해주세요.')
+                        }
+                    }
+                })
+            })
         })
     </script>
 </body>

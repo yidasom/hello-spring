@@ -26,7 +26,7 @@ public class MemberService {
     public void join(Member member) {
         // 같은 이메일, 이름의 중복 회원은 안된다.
         validateDuplicatateMember(member);
-        member.setRegdt(LocalDateTime.now());
+//        member.setRegdt(LocalDateTime.now());
         memberRepository.save(member);
     }
 
@@ -56,4 +56,5 @@ public class MemberService {
     public Optional<Member> login(String email, String passwrd) {
         return memberRepository.login(email, passwrd);
     }
+
 }

@@ -17,7 +17,7 @@ import org.springframework.web.context.annotation.SessionScope;
 @Component
 @SessionScope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 @ToString
-public class Sesson {
+public class MemberInfo {
     private Long id;
     private String name;
     private String email;

@@ -55,12 +55,10 @@ public class MemberService {
     /** 로그인 */
     public Boolean login(String email, String passwrd) {
         Optional<Member> member = memberRepository.login(email, passwrd);
-
-        if (member != null) {
+        if (member.isPresent()) {
             return true;
         } else {
             return false;
         }
     }
-
 }

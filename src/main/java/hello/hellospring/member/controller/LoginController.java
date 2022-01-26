@@ -48,10 +48,7 @@ public class LoginController {
     public Boolean login(@RequestBody Member params) {
         Gson gson = new Gson();
         Member member = new Member();
-
         Boolean bol = memberService.login(member.getEmail(), member.getPasswrd());
-        System.out.println("bol :: " + bol);
-
         return bol;
     }
 

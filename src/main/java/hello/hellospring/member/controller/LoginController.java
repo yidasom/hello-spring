@@ -43,24 +43,16 @@ public class LoginController {
     }
 
     /** 로그인 */
-    @PostMapping("/login/login")
+    @PostMapping(value = "/login/login", produces = "application/json; charset=utf8;")
     @ResponseBody
-    public String login(@RequestBody String info) {
-        String json = null;
-        try {
-            Gson gson = new Gson();
-            Member member = new Member();
-            member = gson.fromJson(info, member.getClass());
+    public Boolean login(@RequestBody Member params) {
+        Gson gson = new Gson();
+        Member member = new Member();
 
-            System.out.println("info : " + gson.toJson(member));
-            memberService.login(member.getEmail(), member.getPasswrd());
+        Boolean bol = memberService.login(member.getEmail(), member.getPasswrd());
+        System.out.println("bol :: " + bol);
 
-            json = gson.toJson(member);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return json;
-
+        return bol;
     }
 
     /** 회원가입 화면 */

@@ -1,5 +1,6 @@
 package hello.hellospring.member.domain;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -25,8 +26,10 @@ public class Member {
 
     private String name;
 
+    @SerializedName("email")
     private String email;
 
+    @SerializedName("passwrd")
     private String passwrd;
 
     private LocalDateTime regdt;

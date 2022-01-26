@@ -109,14 +109,14 @@
                     // beforeSend: function (xhr) {
                     //     xhr.setRequestHeader(header, token);
                     // },
-                    data: params,
+                    data: JSON.stringify(params),
                     dataType: 'json',
                     contentType: 'application/json;charset=UTF-8',
                     success: function (val) {
                         console.log(val);
                         if (val) {
                             if ($('#customCheck').is(':checked')) {
-                                // setCookie("email", id, 7);
+                               // setCookie("email", id, 7);
                             }
                             alert('로그인에 성공하였습니다.');
                             location.href = '/login/login';

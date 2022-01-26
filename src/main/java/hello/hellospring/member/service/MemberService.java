@@ -53,8 +53,14 @@ public class MemberService {
     }*/
 
     /** 로그인 */
-    public Optional<Member> login(String email, String passwrd) {
-        return memberRepository.login(email, passwrd);
+    public Boolean login(String email, String passwrd) {
+        Optional<Member> member = memberRepository.login(email, passwrd);
+
+        if (member != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

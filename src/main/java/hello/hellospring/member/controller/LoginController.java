@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,10 +47,17 @@ public class LoginController {
     /** 로그인 */
     @PostMapping(value = "/login/login", produces = "application/json; charset=utf8;")
     @ResponseBody
-    public Boolean login(@RequestBody Member params) {
+    public Boolean login(@RequestBody Member params, @RequestBody boolean remEmail
+                        , HttpServletResponse response) {
         Gson gson = new Gson();
         Member member = new Member();
         Boolean bol = memberService.login(member.getEmail(), member.getPasswrd());
+        if (bol) {
+            if (remEmail) {
+                Cookie cookie = new Cookie("userEmail", params.getEmail());
+                response.addCookie(cookie);
+            }
+        }
         return bol;
     }
 

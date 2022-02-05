@@ -19,7 +19,21 @@ public class ServerWebSocket {
     }
 
     private static class ClientHandler extends Thread {
+        private Socket clientSocket;
+
         public ClientHandler(Socket socket) {
+            this.clientSocket = socket;
+        }
+
+        @Override
+        public void run() {
+            try {
+                log.info("client 연결");
+                // 클라이언트에서 메지시 받음
+            } catch (Exception e) {
+                log.info("client 끊김");
+                e.printStackTrace();
+            }
         }
     }
 }

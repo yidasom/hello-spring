@@ -40,14 +40,20 @@ public class ClientWebSocket {
             sendThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-
+                    // isInterrupted : 해당 스레드에 interrupt(스레드 상황) 발생 t/f
+                    while(!sendThread.isInterrupted()) {
+                        PrintWriter writer;
+                        try {
+                            writer = new PrintWriter(socket.getOutputStream());
+                            writer.println(key);
+                            writer.flush();
+                            // writer close 시 socket 도 close 되는 듯
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             });
-//            OutputStream outputStream = socket.getOutputStream();
-//            PrintWriter writer = new PrintWriter(outputStream, true);
-//
-//            writer.println();
-
         }
     }
 }

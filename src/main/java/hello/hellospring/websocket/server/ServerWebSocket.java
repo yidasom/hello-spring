@@ -1,5 +1,6 @@
 package hello.hellospring.websocket.server;
 
+import hello.hellospring.websocket.service.DiskInfo;
 import lombok.extern.log4j.Log4j2;
 
 import java.io.BufferedReader;
@@ -42,8 +43,11 @@ public class ServerWebSocket {
                 stream = new ObjectOutputStream(clientSocket.getOutputStream());
                 if (SERVER_KEY.equals(key)) {
                     while(true) {
-                        // 메시지 while문으로
-                        // while 사용하는 이유는 실시간/....
+                        // 메시지 while문으로 하는 이유 (실시간으로 정보를 가져오기 위해)
+//                        DiskInfo diskInfo = new DiskInfo();
+                        ServerWebSocketInfo info = new ServerWebSocketInfo();
+                        stream.writeObject(info.diskInfo());
+                        stream.flush();
                         try {
                             Thread.sleep(5000);
                         } catch (InterruptedException e) {

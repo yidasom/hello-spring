@@ -1,3 +1,5 @@
+import java.util.regex.Pattern
+
 plugins {
 	id 'org.springframework.boot' version '2.6.2'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -33,4 +35,6 @@ dependencies {
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	implementation 'org.springframework.session:spring-session-core'
 	implementation 'com.google.code.gson:gson:2.8.5'
+	implementation files('libs/sigar/sigar.jar')
+	implementation fileTree(dir: 'libs', include: '*.jar')
 }

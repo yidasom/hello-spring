@@ -45,16 +45,15 @@ public class LoginController {
     }
 
     /** 로그인 */
-    @PostMapping(value = "/login/login", produces = "application/json; charset=utf8;")
-    @ResponseBody
-    public Boolean login(@RequestBody Member params, @RequestBody boolean remEmail
-                        , HttpServletResponse response) {
+    @PostMapping(value = "/login/loginJson", produces = "application/json; charset=utf8;")
+    public Boolean login(@RequestBody Member member, HttpServletResponse response) {
         Gson gson = new Gson();
-        Member member = new Member();
+//        Member members = new Member();
         Boolean bol = memberService.login(member.getEmail(), member.getPasswrd());
+        System.out.println(bol);
         if (bol) {
-            if (remEmail) {
-                Cookie cookie = new Cookie("userEmail", params.getEmail());
+            if (Boolean.valueOf(member.getRemEmail())) {
+                Cookie cookie = new Cookie("userEmail", member.getEmail());
                 response.addCookie(cookie);
             }
         }

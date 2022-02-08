@@ -32,6 +32,9 @@ public class Member {
     @SerializedName("passwrd")
     private String passwrd;
 
+    @SerializedName("remEmail")
+    private String remEmail;
+
     private LocalDateTime regdt;
 
     private LocalDateTime updt;

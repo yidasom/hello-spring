@@ -3,21 +3,18 @@ package hello.hellospring.websocket.server;
 import hello.hellospring.websocket.service.DiskInfo;
 import lombok.extern.log4j.Log4j2;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 @Log4j2
 public class ServerWebSocket {
-    static ServerSocket serverSocket;
-    static final String SERVER_KEY = "ABC";
+    private static ServerSocket serverSocket;
+    private static final String SERVER_KEY = "ABC";
 
     public static void main(String[] args) throws IOException {
         serverSocket = new ServerSocket(8080);
-        log.info("서버 연결");
+        log.info("server connect");
         while (true) {
             new ClientHandler(serverSocket.accept()).start();
         }
@@ -25,8 +22,8 @@ public class ServerWebSocket {
 
     private static class ClientHandler extends Thread {
         private Socket clientSocket;
-        static ObjectOutputStream stream;
-        static BufferedReader in;
+        private ObjectOutputStream stream;
+        private BufferedReader in;
 
         public ClientHandler(Socket socket) {
             this.clientSocket = socket;
@@ -35,14 +32,16 @@ public class ServerWebSocket {
         @Override
         public void run() {
             try {
-                log.info("client 연결");
+                log.info("client connect");
                 // 클라이언트에서 메지시 받음
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 String key = in.readLine().trim();
-                log.info("ket : {}", key);
+//                String key = "ABC";
+                log.info("key : {}", key);
                 stream = new ObjectOutputStream(clientSocket.getOutputStream());
                 if (SERVER_KEY.equals(key)) {
                     while(true) {
+                        log.info("pass : {}", "pass");
                         // 메시지 while문으로 하는 이유 (실시간으로 정보를 가져오기 위해)
 //                        DiskInfo diskInfo = new DiskInfo();
                         ServerWebSocketInfo info = new ServerWebSocketInfo();

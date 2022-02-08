@@ -15,11 +15,11 @@ public class ClientWebSocket {
 
     static Socket socket;
     static String host="192.168.219.116";
-    static int port=8888;
+    static int port=8080;
     static String key="ABC";
     static Thread sendThread;
 
-    public static void main(String[] args) throws UnknownHostException, IOException {
+    public static void main(String[] args) throws UnknownHostException, IOException, InterruptedException {
         // host, port
         socket = new Socket(host, port);
         if (socket.isConnected()) {
@@ -30,6 +30,7 @@ public class ClientWebSocket {
         } else {
             System.out.println("fail!");
         }
+        Thread.sleep(5000);
     }
 
     /**
@@ -54,6 +55,7 @@ public class ClientWebSocket {
                     }
                 }
             });
+            sendThread.start();
         }
     }
 }

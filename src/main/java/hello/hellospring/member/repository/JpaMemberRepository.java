@@ -56,7 +56,7 @@ public class JpaMemberRepository implements MemberRepository {
         Optional<Member> result = em.createQuery("select m from y_member m where m.email = :email and m.passwrd = :passwrd", Member.class)
                 .setParameter("email", email)
                 .setParameter("passwrd", passwrd)
-                .getResultList().stream().findFirst();
+                .getResultList().stream().findAny();
          return result;
     }
 }

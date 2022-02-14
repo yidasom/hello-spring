@@ -1,7 +1,6 @@
 package hello.hellospring.member.repository;
 
 import hello.hellospring.member.domain.Member;
-import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -50,13 +49,14 @@ public class JpaMemberRepository implements MemberRepository {
         return em.createQuery("select m from y_member m", Member.class).getResultList();
     }
 
-    /** 로그인 */
+    /** 로그인
+     * @return*/
     @Override
     public Optional<Member> login(String email, String passwrd) {
         Optional<Member> result = em.createQuery("select m from y_member m where m.email = :email and m.passwrd = :passwrd", Member.class)
                 .setParameter("email", email)
                 .setParameter("passwrd", passwrd)
                 .getResultList().stream().findAny();
-         return result;
+        return result.ofNullable(result.get());
     }
 }

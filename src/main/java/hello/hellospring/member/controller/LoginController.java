@@ -46,18 +46,17 @@ public class LoginController {
 
     /** 로그인 */
     @PostMapping(value = "/login/loginJson", produces = "application/json; charset=utf8;")
-    public Boolean login(@RequestBody Member member, HttpServletResponse response) {
+    public Optional<Member> login(@RequestBody Member member, HttpServletResponse response) {
         Gson gson = new Gson();
-//        Member members = new Member();
-        Boolean bol = memberService.login(member.getEmail(), member.getPasswrd());
-        System.out.println(bol);
-        if (bol) {
+        Optional<Member> mem = memberService.login(member.getEmail(), member.getPasswrd());
+
+        if (!mem.equals(null)) {
             if (Boolean.valueOf(member.getRemEmail())) {
                 Cookie cookie = new Cookie("userEmail", member.getEmail());
                 response.addCookie(cookie);
             }
         }
-        return bol;
+        return mem;
     }
 
     /** 회원가입 화면 */

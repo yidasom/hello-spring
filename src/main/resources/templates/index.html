@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -115,7 +115,7 @@
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Charts</span></a><h1>세션 조회</h1>
-                session['userId'] : "${MemberInfo['email']}"<br/>
+                session['userId'] : <span th:text="${@memberInfo.getEmail()}"></span><br/>
             </li>
 
             <!-- Nav Item - Tables -->

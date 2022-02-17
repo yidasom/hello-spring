@@ -98,10 +98,10 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="/login/login">Login</a>
-                        <a class="collapse-item" href="/login/join">Join</a>
-                        <a class="collapse-item" href="/login/passwrd">Forgot Password</a>
+                        <h6 th:if="${@memberInfo.getEmail() == null}" class="collapse-header">Login Screens:</h6>
+                        <a th:if="${@memberInfo.getEmail() == null}" class="collapse-item" href="/login/login">Login</a>
+                        <a th:if="${@memberInfo.getEmail() == null}" class="collapse-item" href="/login/join">Join</a>
+                        <a th:if="${@memberInfo.getEmail() == null}" class="collapse-item" href="/login/passwrd">Forgot Password</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
                         <a class="collapse-item" href="404.html">404 Page</a>
@@ -114,8 +114,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a><h1>세션 조회</h1>
-                session['userId'] : <span th:text="${@memberInfo.getEmail()}"></span><br/>
+                    <span>Charts</span></a>
             </li>
 
             <!-- Nav Item - Tables -->

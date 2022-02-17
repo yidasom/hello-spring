@@ -54,17 +54,7 @@ public class MemberService {
 
     /** 로그인 */
     public Optional<Member> login(String email, String passwrd) {
-        Boolean bol = true;
         Optional<Member> member = memberRepository.login(email, passwrd);
-//        member.ifPresent(m -> {
-//            throw new IllegalStateException("존재하지 않는 회원입니다.");
-//        });
-//        Optional<Member> member1 = memberRepository.findByEmail(email);
-//        if (member1.isPresent()) {
-//            return true;
-//        } else {
-//            return false;
-//        }
         return Optional.ofNullable(member.orElse(null));
     }
 }

@@ -2,6 +2,7 @@ package hello.hellospring.member.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import hello.hellospring.member.domain.Member;
 import hello.hellospring.member.domain.MemberInfo;
 import hello.hellospring.member.service.MemberService;
@@ -46,17 +47,31 @@ public class LoginController {
 
     /** 로그인 */
     @PostMapping(value = "/login/loginJson", produces = "application/json; charset=utf8;")
+    @ResponseBody
     public Optional<Member> login(@RequestBody Member member, HttpServletResponse response) {
         Gson gson = new Gson();
         Optional<Member> mem = memberService.login(member.getEmail(), member.getPasswrd());
+//        String obj = gson.toJson(mem);
+        String obj = "";
 
         if (!mem.equals(null)) {
+            // 세션 넣기
+            info.setEmail(member.getEmail());
+            info.setName(member.getName());
             if (Boolean.valueOf(member.getRemEmail())) {
+                // 쿠키 넣기
                 Cookie cookie = new Cookie("userEmail", member.getEmail());
                 response.addCookie(cookie);
             }
         }
         return mem;
+    }
+
+    // 세션 불러옴
+    @GetMapping("/login/session")
+    @ResponseBody
+    public String get() {
+        return info.getEmail();
     }
 
     /** 회원가입 화면 */

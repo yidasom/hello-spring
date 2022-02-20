@@ -1,12 +1,11 @@
 package hello.hellospring.member.controller;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import hello.hellospring.member.domain.Member;
 import hello.hellospring.member.domain.MemberInfo;
 import hello.hellospring.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,9 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -31,12 +27,16 @@ public class LoginController {
 
     private final MemberService memberService;
 
+    @Autowired
+    private final JavaMailSender javaMailSender;
+
     @Resource
     private MemberInfo info;
 
     @Autowired
-    public LoginController(MemberService memberService) {
+    public LoginController(MemberService memberService, JavaMailSender javaMailSender) {
         this.memberService = memberService;
+        this.javaMailSender = javaMailSender;
     }
 
     /** 로그인 화면 */
@@ -91,5 +91,14 @@ public class LoginController {
     @GetMapping("/login/passwrd")
     public String passwrdForm() {
         return "login/passwrdForm";
+    }
+
+    /** 이메일 보내기 */
+    @PostMapping(value = "/login/passwrdJson", produces = "application/json; charset=utf8;")
+    @ResponseBody
+    public Optional<Member> sendMail(@RequestBody Member member) {
+        Gson gson = new Gson();
+        Optional<Member> result = memberService.findEmail(member.getEmail());
+        return result;
     }
 }

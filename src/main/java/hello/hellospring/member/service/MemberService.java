@@ -57,4 +57,9 @@ public class MemberService {
         Optional<Member> member = memberRepository.login(email, passwrd);
         return Optional.ofNullable(member.orElse(null));
     }
+
+    /** 이메일 유무 확인 */
+    public Optional<Member> findEmail(String email) {
+        return memberRepository.findByEmail(email);
+    }
 }

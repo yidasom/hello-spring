@@ -49,7 +49,7 @@
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
                                         </div>
-                                        <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                        <a href="#!" class="btn btn-primary btn-user btn-block" id="resetPwd">
                                             Reset Password
                                         </a>
                                     </form>
@@ -82,6 +82,37 @@
     <!-- Custom scripts for all pages-->
     <script src="/bootstrap/js/sb-admin-2.min.js"></script>
 
+    <script>
+        $(document).ready(function () {
+            $('#resetPwd').on('click', function () {
+                // let header = $("meta[name='_csrf_header']").attr('content');
+                // let token = $("meta[name='_csrf']").attr('content');
+
+                let params = {
+                    email: $('#exampleInputEmail').val()
+                }
+                $.ajax({
+                    type: 'post',
+                    url: '/login/passwrdJson',
+                    // beforeSend: function (xhr) {
+                    //     xhr.setRequestHeader(header, token);
+                    // },
+                    data: JSON.stringify(params),
+                    dataType: 'json',
+                    contentType: 'application/json;charset=UTF-8',
+                    success: function (val) {
+                    console.log(val)
+                        if (val) {
+                            alert('비밀번호를 재등록해주세요.');
+                            location.href = '/';
+                        } else {
+                            alert('등록된 이메일이 아닙니다..')
+                        }
+                    }
+                })
+            })
+        })
+    </script>
 </body>
 
 </html>

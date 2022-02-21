@@ -5,7 +5,10 @@ import hello.hellospring.member.domain.Member;
 import hello.hellospring.member.domain.MemberInfo;
 import hello.hellospring.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
@@ -27,8 +32,10 @@ public class LoginController {
 
     private final MemberService memberService;
 
-    @Autowired
     private final JavaMailSender javaMailSender;
+
+    @Value("${spring.mail.username}")
+    private String from_email;
 
     @Resource
     private MemberInfo info;
@@ -96,9 +103,18 @@ public class LoginController {
     /** 이메일 보내기 */
     @PostMapping(value = "/login/passwrdJson", produces = "application/json; charset=utf8;")
     @ResponseBody
-    public Optional<Member> sendMail(@RequestBody Member member) {
+    public Optional<Member> sendMail(@RequestBody Member member) throws MessagingException {
         Gson gson = new Gson();
         Optional<Member> result = memberService.findEmail(member.getEmail());
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(result.get().getEmail());
+        message.setFrom(from_email);
+        message.setSubject("본인 인증하십니까?");
+        message.setText("1234");
+
+        javaMailSender.send(message);
+
         return result;
     }
 }

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 /**
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
  * @data : 2022/02/25
  * @author : idasom
  */
+@Table(name="y_bbs")
 @Setter
 @Getter
 @ToString
@@ -22,17 +24,20 @@ public class Bbs implements BbsVO {
     /** 게시글 이름 */
     private String bbsNm;
 
+    /** 게시글 내용 */
+    private String bbsCn;
+
     /** 게시글 타입 (일반 : ORI, 이미지 : IMG) */
     private String bbsType;
 
     /** 작성자 */
-    private String regId;
+    private Long regid;
 
     /** 작성일 */
     private LocalDateTime regdt;
 
     /** 수정자 */
-    private String upId;
+    private Long upid;
 
     /** 수정일 */
     private LocalDateTime updt;

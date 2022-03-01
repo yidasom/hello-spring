@@ -93,7 +93,7 @@ public class LoginController {
     public String join(Member member) {
         memberService.join(member);
         Author author = new Author();
-        author.getMember().setId(member.getId());
+        author.setId(member.getId());
         authorService.validateAuthor(author);
         return "redirect:/";
     }

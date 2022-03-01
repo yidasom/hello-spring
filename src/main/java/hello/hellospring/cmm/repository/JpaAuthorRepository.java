@@ -22,8 +22,8 @@ public class JpaAuthorRepository implements AuthorRepository {
     }
 
     @Override
-    public Author insertAuthorById(Long id) {
-        Author author = em.find(Author.class, id);
+    public Author insertAuthorById(Author author) {
+        em.persist(author);
         return author;
     }
 }

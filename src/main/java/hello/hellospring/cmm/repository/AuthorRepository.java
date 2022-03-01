@@ -11,5 +11,5 @@ import java.util.Optional;
  * @data : 2022/03/01
  */
 public interface AuthorRepository {
-    Author insertAuthorById(Long id);
+    Author insertAuthorById(Author author);
 }

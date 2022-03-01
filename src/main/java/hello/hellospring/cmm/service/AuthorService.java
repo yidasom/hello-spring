@@ -27,6 +27,6 @@ public class AuthorService {
     /** 권한 조회 및 부여 */
     public void validateAuthor(Author author) {
         author.setAuthor("ROLE_USER");
-        authorRepository.insertAuthorById(author.getMember().getId());
+        authorRepository.insertAuthorById(author);
     }
 }

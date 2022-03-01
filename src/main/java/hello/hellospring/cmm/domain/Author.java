@@ -22,9 +22,11 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 public class Author {
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private Member member;
+//    @ManyToOne
+//    @JoinColumn(name = "id")
+//    private Member member;
+    @SerializedName("id")
+    private Long id;
 
     @SerializedName("author")
     private String author;

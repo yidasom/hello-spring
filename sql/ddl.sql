@@ -37,3 +37,15 @@ CREATE TABLE public.y_member (
                                  updt timestamp NULL,
                                  CONSTRAINT y_member_pkey PRIMARY KEY (id)
 );
+
+-- Drop table
+
+-- DROP TABLE public.y_author;
+
+CREATE TABLE public.y_author (
+	id int8 NULL,
+	author text NULL,
+	regdt timestamp NULL,
+	updt timestamp NULL,
+	CONSTRAINT y_author_fk FOREIGN KEY (id) REFERENCES public.y_member(id) ON DELETE CASCADE
+);

@@ -1,13 +1,14 @@
 package hello.hellospring;
 
+import hello.hellospring.cmm.repository.AuthorRepository;
+import hello.hellospring.cmm.repository.JpaAuthorRepository;
+import hello.hellospring.cmm.service.AuthorService;
 import hello.hellospring.member.repository.*;
 import hello.hellospring.member.service.MemberService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.EntityManager;
-import javax.sql.DataSource;
 
 @Configuration
 public class SpringConfig {
@@ -24,4 +25,13 @@ public class SpringConfig {
         return new JpaMemberRepository(em);
     }
 
+    @Bean
+    public AuthorService authorService() {
+        return new AuthorService(authorRepository());
+    }
+
+    @Bean
+    public AuthorRepository authorRepository() {
+        return new JpaAuthorRepository(em);
+    }
 }

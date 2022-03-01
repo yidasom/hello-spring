@@ -1,13 +1,11 @@
 package hello.hellospring.member.service;
 
+import hello.hellospring.cmm.service.AuthorService;
 import hello.hellospring.member.domain.Member;
 import hello.hellospring.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -28,6 +26,7 @@ public class MemberService {
         validateDuplicatateMember(member);
 //        member.setRegdt(LocalDateTime.now());
         memberRepository.save(member);
+
     }
 
     private void validateDuplicatateMember(Member member) {

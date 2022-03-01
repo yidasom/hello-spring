@@ -1,6 +1,8 @@
 package hello.hellospring.member.controller;
 
 import com.google.gson.Gson;
+import hello.hellospring.cmm.domain.Author;
+import hello.hellospring.cmm.service.AuthorService;
 import hello.hellospring.member.domain.Member;
 import hello.hellospring.member.domain.MemberInfo;
 import hello.hellospring.member.service.MemberService;
@@ -8,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
@@ -31,7 +31,7 @@ import java.util.Optional;
 public class LoginController {
 
     private final MemberService memberService;
-
+    private final AuthorService authorService;
     private final JavaMailSender javaMailSender;
 
     @Value("${spring.mail.username}")
@@ -41,8 +41,9 @@ public class LoginController {
     private MemberInfo info;
 
     @Autowired
-    public LoginController(MemberService memberService, JavaMailSender javaMailSender) {
+    public LoginController(MemberService memberService, AuthorService authorService, JavaMailSender javaMailSender) {
         this.memberService = memberService;
+        this.authorService = authorService;
         this.javaMailSender = javaMailSender;
     }
 
@@ -91,6 +92,9 @@ public class LoginController {
     @PostMapping("/login/join2")
     public String join(Member member) {
         memberService.join(member);
+        Author author = new Author();
+        author.getMember().setId(member.getId());
+        authorService.validateAuthor(author);
         return "redirect:/";
     }
 

@@ -92,6 +92,7 @@ public class LoginController {
     @PostMapping("/login/join2")
     public String join(Member member) {
         memberService.join(member);
+        /** 권한 등록 */
         Author author = new Author();
         author.setId(member.getId());
         authorService.validateAuthor(author);

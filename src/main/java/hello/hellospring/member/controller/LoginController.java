@@ -39,6 +39,7 @@ public class LoginController {
 
     @Resource
     private MemberInfo info;
+    private String string;
 
     @Autowired
     public LoginController(MemberService memberService, AuthorService authorService, JavaMailSender javaMailSender) {
@@ -94,7 +95,7 @@ public class LoginController {
         memberService.join(member);
         /** 권한 등록 */
         Author author = new Author();
-        author.setId(member.getId());
+        author.setMember(member);
         authorService.validateAuthor(author);
         return "redirect:/";
     }
@@ -102,7 +103,7 @@ public class LoginController {
     /** 비밀번호 찾기 화면 */
     @GetMapping("/login/passwrd")
     public String passwrdForm() {
-        return "login/passwrdForm";
+        return string;
     }
 
     /** 이메일 보내기 */

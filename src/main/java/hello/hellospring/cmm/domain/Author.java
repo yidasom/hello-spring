@@ -6,9 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 /**
@@ -17,22 +15,25 @@ import java.time.LocalDateTime;
  * @author : idasom
  * @data : 2022/03/01
  */
+@Entity(name="y_author")
 @Table(name="y_author")
 @Getter
 @Setter
 @ToString
 public class Author {
-//    @ManyToOne
-//    @JoinColumn(name = "id")
-//    private Member member;
-    @SerializedName("id")
-    private Long id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="auth_id")
+    private Long auth_id;
 
-    @SerializedName("author")
+    @Column(name="author")
     private String author;
 
     private LocalDateTime regdt;
 
     private LocalDateTime updt;
+
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "id")
+    private Member member;
 
 }

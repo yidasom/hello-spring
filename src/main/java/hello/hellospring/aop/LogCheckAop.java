@@ -9,20 +9,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class LogCheckAop {
 
-//    @Pointcut("execution(* hello.hellospring..*(..))")
+//    @Pointcut("execution(* hello.hellospring..*(..)) || execution(* hello.hellospring..*(..))")
 //    private void pointCut() {
 //    }
 
-    // @Around("pointCut()")
-    @Around("execution(* hello.hellospring..*(..))")
-    public Object execute(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        try {
-            Object result = proceedingJoinPoint.proceed();
-            System.out.println(result);
-            return result;
-        } finally {
-            System.out.println("success ?!!!");
-        }
-
-    }
+//  @Around("pointCut()")
+//    @Around("execution(* hello.hellospring..*(..))")
+//    public Object execute(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+//        try {
+//            Object result = proceedingJoinPoint.proceed();
+//            System.out.println(result);
+//            return result;
+//        } finally {
+//            System.out.println("success ?!!!");
+//        }
+//
+//    }
 }

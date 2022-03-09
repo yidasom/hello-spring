@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 /**
@@ -59,28 +61,28 @@ public class LoginController {
     @ResponseBody
     public Optional<Member> login(@RequestBody Member member, HttpServletResponse response) {
         Gson gson = new Gson();
-        Optional<Member> mem = memberService.login(member.getEmail(), member.getPasswrd());
+        Optional<Member> loginMember = memberService.login(member.getEmail(), member.getPasswrd());
 //        String obj = gson.toJson(mem);
-        String obj = "";
+        Optional<Member> findMember = memberService.findEmail(member.getEmail());
 
-        if (!mem.equals(null)) {
+        if (!loginMember.equals(null)) {
             // 세션 넣기
-            info.setEmail(member.getEmail());
-            info.setName(member.getName());
+            info.setEmail(findMember.get().getEmail());
+            info.setName(findMember.get().getName());
+            info.setId(findMember.get().getId());
             if (Boolean.valueOf(member.getRemEmail())) {
                 // 쿠키 넣기
                 Cookie cookie = new Cookie("userEmail", member.getEmail());
                 response.addCookie(cookie);
             }
         }
-        return mem;
+        return loginMember;
     }
 
     // 세션 불러옴
-    @GetMapping("/login/session")
-    @ResponseBody
-    public String get() {
-        return info.getEmail();
+    @GetMapping("/login/index")
+    public String loginIndex(Model model, HttpSession session) {
+        return "index";
     }
 
     /** 회원가입 화면 */

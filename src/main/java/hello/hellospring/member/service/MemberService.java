@@ -2,6 +2,7 @@ package hello.hellospring.member.service;
 
 import hello.hellospring.cmm.service.AuthorService;
 import hello.hellospring.member.domain.Member;
+import hello.hellospring.member.domain.MemberCharge;
 import hello.hellospring.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +27,6 @@ public class MemberService {
         validateDuplicatateMember(member);
 //        member.setRegdt(LocalDateTime.now());
         memberRepository.save(member);
-
     }
 
     private void validateDuplicatateMember(Member member) {
@@ -60,5 +60,10 @@ public class MemberService {
     /** 이메일 유무 확인 */
     public Optional<Member> findEmail(String email) {
         return memberRepository.findByEmail(email);
+    }
+
+    /** 회원 요금 등록 */
+    public void saveCharge(MemberCharge memberCharge) {
+        memberRepository.saveCharge(memberCharge);
     }
 }

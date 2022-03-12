@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import hello.hellospring.cmm.domain.Author;
 import hello.hellospring.cmm.service.AuthorService;
 import hello.hellospring.member.domain.Member;
+import hello.hellospring.member.domain.MemberCharge;
 import hello.hellospring.member.domain.MemberInfo;
 import hello.hellospring.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,9 +80,9 @@ public class LoginController {
         return loginMember;
     }
 
-    // 세션 불러옴
+    /** 로그인 후 메인화면 */
     @GetMapping("/login/index")
-    public String loginIndex(Model model, HttpSession session) {
+    public String loginIndex(Model model, MemberCharge memberCharge) {
         return "index";
     }
 

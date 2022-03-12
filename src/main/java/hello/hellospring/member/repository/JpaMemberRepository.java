@@ -1,6 +1,7 @@
 package hello.hellospring.member.repository;
 
 import hello.hellospring.member.domain.Member;
+import hello.hellospring.member.domain.MemberCharge;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -58,5 +59,11 @@ public class JpaMemberRepository implements MemberRepository {
                 .setParameter("passwrd", passwrd)
                 .getResultList().stream().findAny();
         return result.ofNullable(result.get());
+    }
+
+    @Override
+    public MemberCharge saveCharge(MemberCharge memberCharge) {
+        em.persist(memberCharge);
+        return memberCharge;
     }
 }

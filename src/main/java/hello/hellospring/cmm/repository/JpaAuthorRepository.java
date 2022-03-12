@@ -4,7 +4,6 @@ import hello.hellospring.cmm.domain.Author;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Optional;
 
 /**
  * hello.hellospring.cmm.repository

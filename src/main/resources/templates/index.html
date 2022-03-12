@@ -659,7 +659,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade sendMsg" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div th:if="${@memberInfo.getId() != null }" class="modal fade sendMsg" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -668,16 +668,15 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form role="form" th:action="@{/saveMember}" th:object="${MemberCharge}" id="form" action="" method="post">
+                <form role="form" th:action="@{/charge/save}" th:object="${memberCharge}" id="form" action="" method="post">
                     <div class="modal-body">
-                        닉네임 : <input type="text" name="nick" /> <br/>
-                        전화번호 : <input type="text" name="phone" /> <br/><br/>
-                        입실시간 : <input type="text" name="checkInTime" /> <br/>
-                        사용시간 : <input type="text" name="useTime" /><br/>
-                        충전금액 : <input type="text" name="charge" /><br/>
+                        닉네임 : <input type="text" th:field="*{nick}" /> <br/>
+                        전화번호 : <input type="text" th:field="*{phone}" /> <br/><br/>
+                        입실시간 : <input type="text" th:field="*{checkInTime}" /> <br/>
+                        사용시간 : <input type="text" th:field="*{useTime}" /><br/>
+                        충전금액 : <input type="text" th:field="*{charge}" /><br/>
                     </div>
-                    <input type="text" th:field="${@memberInfo.getId() }" name="chg_id" />
-<!--                    <span th:text="${@memberInfo.getEmail() }"></span>-->
+                    <input id="seat" type="hidden" th:field="*{seat}" />
                 </form>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -700,21 +699,25 @@
     <script src="/bootstrap/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="/bootstrap/vendor/chart.js/Chart.min.js"></script>
+<!--    <script src="/bootstrap/vendor/chart.js/Chart.min.js"></script>-->
 
     <!-- Page level custom scripts -->
-    <script src="/bootstrap/js/demo/chart-area-demo.js"></script>
-    <script src="/bootstrap/js/demo/chart-pie-demo.js"></script>
+<!--    <script src="/bootstrap/js/demo/chart-area-demo.js"></script>-->
+<!--    <script src="/bootstrap/js/demo/chart-pie-demo.js"></script>-->
 
     <script th:inline="javascript">
     $(document).ready(function(){
-        $('.addBtn').on('click', function(){
-           // $('#nickId').val($(this).data('id'));
+        $('.addBtn').on('click', function() {
+            const seat = $(this).data('id');
+            $('#seat').val(seat);
             $('.sendMsg').modal();
         });
+
+        // 회원 요금 저장
         $('#save').on('click', function() {
-            $('#form').attr('action', '//');
+            $('#form').submit();
         });
+
     });
     </script>
 

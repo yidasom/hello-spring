@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
  * @author : idasom
  * @data : 2022/03/08
  */
-@Entity(name="y_memberCharge")
-@Table(name="y_memberCharge")
+@Entity(name="y_membercharge")
+@Table(name="y_membercharge")
 @Setter
 @Getter
 @ToString
@@ -37,6 +37,9 @@ public class MemberCharge {
 
     /** 사용시간 */
     private Integer charge;
+
+    /** 좌석 */
+    private String seat;
 
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "id")

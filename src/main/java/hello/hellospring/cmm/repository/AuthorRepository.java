@@ -2,8 +2,6 @@ package hello.hellospring.cmm.repository;
 
 import hello.hellospring.cmm.domain.Author;
 
-import java.util.Optional;
-
 /**
  * hello.hellospring.cmm.repository
  *

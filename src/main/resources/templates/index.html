@@ -357,26 +357,29 @@
                     <!-- Content Row -->
                     <div class="row">
                         <div th:each="m : ${#numbers.sequence(1, 8)}" class="col-xl-3 col-lg-4">
-                            <div class="card shadow mb-4">
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        닉네임 : <br/>
-                                        전화번호 : <br/><br/>
-                                        입실시간 : <br/>
-                                        사용시간 : <br/>
-                                        충전금액 : <br/>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <a th:if="${@memberInfo.getEmail() != null}" th:attr="data-id=${m}" href="#" class="btn btn-light btn-icon-split addBtn" data-toggle="modal">
-                                        <span class="icon text-gray-600">
-                                            <i class="fas fa-arrow-right"></i>
-                                        </span>
-                                            <span class="text" >[(${m})] 번 인원 추가</span>
-                                        </a>
+                            <br/><span th:text="${m}" />
+                            <form th:if="${@memberInfo.getId() != null }" role="form" action="" th:object="${result}" method="post">
+                                <div class="card shadow mb-4">
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-pie pt-4 pb-2">
+                                            닉네임 : <span th:text="${result}" /><br/><span th:text="${result.name}" /><br/>
+                                            전화번호 : <br/><br/>
+                                            입실시간 : <br/>
+                                            사용시간 : <br/>
+                                            충전금액 : <br/>
+                                        </div>
+                                        <div class="mt-4 text-center small">
+                                            <a th:if="${@memberInfo.getEmail() != null}" th:attr="data-id=${m}" href="#" class="btn btn-light btn-icon-split addBtn" data-toggle="modal">
+                                            <span class="icon text-gray-600">
+                                                <i class="fas fa-arrow-right"></i>
+                                            </span>
+                                                <span class="text" >[(${m})] 번 인원 추가</span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
 
@@ -668,7 +671,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form role="form" th:action="@{/charge/save}" th:object="${memberCharge}" id="form" action="" method="post">
+                <form role="form" th:action="@{/charge/save}" th:object="${member.memberCharge}" id="form" action="" method="post">
                     <div class="modal-body">
                         닉네임 : <input type="text" th:field="*{nick}" /> <br/>
                         전화번호 : <input type="text" th:field="*{phone}" /> <br/><br/>

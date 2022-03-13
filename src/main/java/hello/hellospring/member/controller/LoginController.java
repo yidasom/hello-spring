@@ -17,12 +17,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+//import org.assertj.core.api.Assertions;
 
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -82,7 +85,9 @@ public class LoginController {
 
     /** 로그인 후 메인화면 */
     @GetMapping("/login/index")
-    public String loginIndex(Model model, MemberCharge memberCharge) {
+    public String loginIndex(Model model) {
+        Optional<Member> list = memberService.findEmail(info.getEmail());
+        //model.addAttribute("result", Assertions.assertThat(list.isPresent()).isEqualTo(false));
         return "index";
     }
 

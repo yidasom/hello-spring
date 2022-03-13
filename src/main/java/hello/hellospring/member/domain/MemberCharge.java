@@ -1,5 +1,6 @@
 package hello.hellospring.member.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 @Table(name="y_membercharge")
 @Setter
 @Getter
-@ToString
+@ToString(exclude = "member")
 public class MemberCharge {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="chg_id")
@@ -41,7 +42,8 @@ public class MemberCharge {
     /** 좌석 */
     private String seat;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "id")
     private Member member;
 }

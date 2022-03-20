@@ -671,16 +671,16 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form role="form" th:action="@{/charge/save}" th:object="${member.memberCharge}" id="form" action="" method="post">
-                    <div class="modal-body">
-                        닉네임 : <input type="text" th:field="*{nick}" /> <br/>
-                        전화번호 : <input type="text" th:field="*{phone}" /> <br/><br/>
-                        입실시간 : <input type="text" th:field="*{checkInTime}" /> <br/>
-                        사용시간 : <input type="text" th:field="*{useTime}" /><br/>
-                        충전금액 : <input type="text" th:field="*{charge}" /><br/>
-                    </div>
-                    <input id="seat" type="hidden" th:field="*{seat}" />
-                </form>
+<!--                <form role="form" th:action="@{/charge/save}" th:object="${member.memberCharge}" id="form" action="" method="post">-->
+<!--                    <div class="modal-body">-->
+<!--                        닉네임 : <input type="text" th:field="*{nick}" /> <br/>-->
+<!--                        전화번호 : <input type="text" th:field="*{phone}" /> <br/><br/>-->
+<!--                        입실시간 : <input type="text" th:field="*{checkInTime}" /> <br/>-->
+<!--                        사용시간 : <input type="text" th:field="*{useTime}" /><br/>-->
+<!--                        충전금액 : <input type="text" th:field="*{charge}" /><br/>-->
+<!--                    </div>-->
+<!--                    <input id="seat" type="hidden" th:field="*{seat}" />-->
+<!--                </form>-->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="save">Save changes</button>

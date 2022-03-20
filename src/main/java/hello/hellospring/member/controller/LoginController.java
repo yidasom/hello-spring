@@ -113,8 +113,9 @@ public class LoginController {
     }
 
     /** 로그아웃 */
-    @PostMapping("/logout")
-    public String logout(HttpServletResponse response, String cookieEmail) {
+    @GetMapping("/logout")
+    public String logout(HttpServletResponse response, HttpSession session) {
+        session.invalidate();
         Cookie cookie = new Cookie("userEmail", null);
         cookie.setMaxAge(0);
         response.addCookie(cookie);

@@ -13,10 +13,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.util.StringUtils;
 //import org.assertj.core.api.Assertions;
 
 import javax.annotation.Resource;
@@ -56,7 +54,13 @@ public class LoginController {
 
     /** 로그인 화면 */
     @GetMapping("/login/login")
-    public String loginForm() {
+    public String loginForm(@CookieValue(value = "userEmail", required = false) Cookie cookie, Model model) {
+        Member member = new Member();
+        if (cookie != null) {
+            member.setEmail(cookie.getValue());
+            member.setRemEmail("true");
+        }
+        model.addAttribute("member", member);
         return "login/loginForm";
     }
 
@@ -105,6 +109,15 @@ public class LoginController {
         Author author = new Author();
         author.setMember(member);
         authorService.validateAuthor(author);
+        return "redirect:/";
+    }
+
+    /** 로그아웃 */
+    @PostMapping("/logout")
+    public String logout(HttpServletResponse response, String cookieEmail) {
+        Cookie cookie = new Cookie("userEmail", null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
         return "redirect:/";
     }
 

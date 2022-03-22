@@ -28,15 +28,15 @@ public class Member {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
-
+    /** 닉네임 */
     private String name;
-
+    /** 이메일 */
     @SerializedName("email")
     private String email;
-
+    /** 비밀번호 */
     @SerializedName("passwrd")
     private String passwrd;
-
+    /** 이메일 기억 */
     @SerializedName("remEmail")
     private String remEmail;
 
@@ -44,6 +44,7 @@ public class Member {
 
     private LocalDateTime updt;
 
+    /** 고객 금액 정보 */
     @JsonIgnore
     @OneToOne(mappedBy = "member")
     private MemberCharge memberCharge;

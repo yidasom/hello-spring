@@ -36,7 +36,7 @@ public class MemberCharge {
     /** 사용시간 */
     private LocalDateTime useTime;
 
-    /** 사용시간 */
+    /** 충전금액 */
     private Integer charge;
 
     /** 좌석 */

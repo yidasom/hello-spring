@@ -357,17 +357,19 @@
                     <!-- Content Row -->
                     <div class="row">
                         <div th:each="m : ${#numbers.sequence(1, 8)}" class="col-xl-3 col-lg-4">
-                            <br/><span th:text="${m}" />
-                            <form th:if="${@memberInfo.getId() != null }" role="form" action="" th:object="${result}" method="post">
+                            <br/>
+                            <form th:if="${@memberInfo.getId() ne null}" role="form" action="" th:object="${result}" method="post">
                                 <div class="card shadow mb-4">
                                     <!-- Card Body -->
                                     <div class="card-body">
-                                        <div class="chart-pie pt-4 pb-2">
-                                            닉네임 : <span th:text="*{name}" /><br/>
-                                            전화번호 : <span th:text="*{phone}" /><br/><br/>
-                                            입실시간 : <span th:text="*{memberCharge.checkInTime}" /><br/>
-                                            사용시간 : <span th:text="*{memberCharge.useTime}" /><br/>
-                                            충전금액 : <span th:text="*{memberCharge.charge}" /><br/>
+                                        <div class="chart-pie pt-4 pb-2" >
+                                            <div th:if="${#strings.equals(result.memberCharge.seat, #strings.toString(m)) }">
+                                                닉네임 : <span th:text="*{name}" /><br/>
+                                                전화번호 : <span th:text="*{memberCharge.phone}" /><br/><br/>
+                                                입실시간 : <span th:text="*{memberCharge.checkInTime}" /><br/>
+                                                사용시간 : <span th:text="*{memberCharge.useTime}" /><br/>
+                                                충전금액 : <span th:text="*{memberCharge.charge}" /><br/>
+                                            </div>
                                         </div>
                                         <div class="mt-4 text-center small">
                                             <a th:if="${@memberInfo.getEmail() != null}" th:attr="data-id=${m}" href="#" class="btn btn-light btn-icon-split addBtn" data-toggle="modal">

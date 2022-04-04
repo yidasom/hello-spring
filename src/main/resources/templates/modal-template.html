@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>miz yi</title>
+
+    <div th:fragment="memModal('seat')}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+<!--                <form role="form" th:action="@{/charge/save}" th:object="${result.memberCharge}" id="form" action="" method="post">-->
+<!--                    <div class="modal-body">-->
+<!--                        닉네임 : <input type="text" th:field="*{nick}" /> <br/>-->
+<!--                        전화번호 : <input type="text" th:field="*{phone}" /> <br/><br/>-->
+<!--                        입실시간 : <input type="text" th:field="*{checkInTime}" /> <br/>-->
+<!--                        사용시간 : <input type="text" th:field="*{useTime}" /><br/>-->
+<!--                        충전금액 : <input type="text" th:field="*{charge}" /><br/>-->
+<!--                    </div>-->
+<!--                    <input id="seat" type="hidden" th:field="*{seat}" />-->
+<!--                </form>-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="save">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</html>

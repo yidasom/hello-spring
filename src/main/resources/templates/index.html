@@ -665,7 +665,9 @@
 
 <!-- Modal -->
 <div th:if="${@memberInfo.getId() != null }" class="modal fade sendMsg" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div id="seat" th:include="modal-template :: memModal('this')" ></div>
+    <input id="seat" type="text" th:value=""/>
+    <p th:with="seatNo=''" />
+    <div th:include="modal-template :: memModal('this')" ></div>
 </div>
 
 <!-- Bootstrap core JavaScript-->
@@ -689,8 +691,10 @@
     $(document).ready(function(){
         $('.addBtn').on('click', function() {
             const seat = $(this).data('id');
-            $('#seat').val(seat);
-            $('.sendMsg').modal();
+            var html = '';
+                  html += '<div th:include="modal-template :: memModal('+"'"+seat+"'"+')" ></div>';
+<!--            $('.sendMsg').append(html);-->
+            $('.sendMsg').modal('show');
         });
 
         // 회원 요금 저장

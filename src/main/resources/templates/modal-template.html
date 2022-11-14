@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <title>miz yi</title>
 
-    <div th:fragment="memModal('seat')}">
+    <div th:fragment="memModal(seat)}">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -17,6 +17,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <p th:text="${seat}" />
 <!--                <form role="form" th:action="@{/charge/save}" th:object="${result.memberCharge}" id="form" action="" method="post">-->
 <!--                    <div class="modal-body">-->
 <!--                        닉네임 : <input type="text" th:field="*{nick}" /> <br/>-->
@@ -35,4 +36,10 @@
         </div>
     </div>
 
+    <script th:inline="javascript">
+    $(document).ready(function(){
+       alert($('#aa').val());
+
+    });
+    </script>
 </html>
